@@ -5,7 +5,7 @@ export default function Hero() {
     <>
       <div >
         <img src="/images/bruno-kelzer-LvySG1hvuzI-unsplash.jpg" alt="" className=""/>
-        
+        This is a test hero
       </div>
     </>
   )
