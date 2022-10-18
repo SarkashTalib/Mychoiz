@@ -30,9 +30,9 @@ const categories = [
 
 export default function CategoriesMenu() {
   return (
-    <>
+    <> 
       <div className="mx-auto mb-20 max-w-7xl">
-        <ul className="flex justify-between">
+        <ul className="grid grid-cols-3 gap-2 text-center md:grid-cols-6 md:gap-0">
           {categories.map((category) => (
             <a href={category.id}><li className="px-6 py-1 text-lg duration-200 rounded-lg hover:bg-gray-50 text-black/60">{category.name}</li></a>
           ))}
