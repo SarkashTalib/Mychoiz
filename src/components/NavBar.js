@@ -7,18 +7,17 @@ const navigation = [
 
 
   { name: 'Home', href: '/1' },
-  { name: 'Categories', href: '/2' },
-  { name: 'About', href: '/3' },
+  { name: 'About', href: '/2' },
   { name: 'Contact', href: '/4' },
 ]
 export default function NavBar() {
   return(
           <Popover>
-            <div className="px-4 mx-auto sm:px-6">
-              <nav className="relative flex items-center justify-between sm:h-10 md:h-14 md:justify-around" aria-label="Global">
-                <a href="/">
+            <div className="px-4 mx-auto sm:px-6" >
+              <nav className="relative flex items-center justify-between sm:h-10 md:h-14 md:justify-around" data-testid="nav" aria-label="Global">
+                <a href="/" data-testid="logo-tag">
                   <span className="sr-only">Your Company</span>
-                    <h1 className="px-2 font-sans text-xl italic font-medium tracking-wider text-gray-500 uppercase md:px-0 md:text-3xl">Mychoiz</h1>
+                  <h1 className="px-2 font-sans text-xl italic font-medium tracking-wider text-gray-500 uppercase md:px-0 md:text-3xl">Mychoiz</h1>
                 </a>
                 <div className="flex justify-center px-2 lg:ml-6 lg:justify-center">
                   <div className="max-w-lg lg:max-w-xs">
@@ -39,19 +38,19 @@ export default function NavBar() {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center px-2 flex-2 md:absolute md:inset-y-0 md:left-0">
+                <div data-testid="menu" className="flex items-center px-2 flex-2 md:absolute md:inset-y-0 md:left-0">
                   <div className="flex items-center justify-between w-full md:w-auto">
                     <div className="flex items-center -mr-2 md:hidden">
-                      <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md bg-gray-50 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                      <Popover.Button  className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md bg-gray-50 hover:bg-gray-100 hover:text-gray-500 ">
                         <span className="sr-only">Open main menu</span>
-                        <Bars3Icon className="w-6 h-6" aria-hidden="true" />
+                        <Bars3Icon data-testid="menu-icon" className="w-6 h-6" aria-hidden="true" />
                       </Popover.Button>
                     </div>
                   </div>
                 </div>
                 <div className="hidden md:flex md:space-x-10">
                   {navigation.map((item) => (
-                    <a key={item.name} href={item.href} className="font-medium text-gray-500 hover:text-gray-900">
+                    <a data-testid="nav-items" key={item.name} href={item.href} className="font-medium text-gray-500 hover:text-sky-600">
                       {item.name}
                     </a>
                   ))}
@@ -68,26 +67,25 @@ export default function NavBar() {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Popover.Panel
-                focus
-                className="absolute inset-x-0 top-0 right-0 z-10 p-2 transition origin-top-right transform md:hidden"
-              >
+              
+              <Popover.Panel data-testid="panel" className="absolute inset-x-0 top-0 right-0 z-10 p-2 transition origin-top-right transform md:hidden">
                 <div className="overflow-hidden bg-white rounded-lg shadow-md ring-1 ring-black ring-opacity-5">
-                  <div className="flex items-center justify-between px-5 pt-4">
-                    <a href="/">
+                  <div  className="flex items-center justify-between px-5 pt-4">
+                    <a href="/" data-testid="popover">
                       <span className="sr-only">Your Company</span>
                         <h1 className="font-sans text-3xl italic font-medium tracking-wider text-gray-500 uppercase">Mychoiz</h1>
                     </a>
-                    <div className="-mr-2">
-                      <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <div className="-mr-2" data-testid="popover-button">
+                      <Popover.Button  className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 ">
                         <span className="sr-only">Close menu</span>
-                        <XMarkIcon className="w-6 h-6" aria-hidden="true" />
+                        <XMarkIcon data-testid="popover-button-icon" className="w-6 h-6" aria-hidden="true" />
                       </Popover.Button>
                     </div>
                   </div>
                   <div className="px-2 pt-2 pb-3">
                     {navigation.map((item) => (
-                      <a
+                      <a 
+                        data-testid="popover-items"
                         key={item.name}
                         href={item.href}
                         className="block px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:bg-gray-50 hover:text-gray-900"
