@@ -1,7 +1,7 @@
 import React from 'react'
 import BlogPost from './BlogPost'
 
-export default function ContentPosts() {
+export default function ContentPosts(props) {
   return (
     <>
       <div className="flex flex-col items-center justify-center flex-shrink-0 mt-10">

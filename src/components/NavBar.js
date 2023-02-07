@@ -6,9 +6,9 @@ import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/o
 const navigation = [
 
 
-  { name: 'Home', href: '/1' },
-  { name: 'About', href: '/2' },
-  { name: 'Contact', href: '/4' },
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
 ]
 export default function NavBar() {
   return(

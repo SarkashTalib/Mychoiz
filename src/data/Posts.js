@@ -1,9 +1,10 @@
 export const posts = [
   {
+    id: 1,
     title: 'Boost your conversion rate',
-    href: '#',
+    href: '/article',
     Featured: true,
-    category: { name: 'Cinema', href: '#', color: 'bg-indigo-100 text-indigo-800' },
+    category: { name: 'Cinema', href: '/cinema', color: 'bg-indigo-100 text-indigo-800' },
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.',
     date: 'Mar 16, 2020',
@@ -20,10 +21,11 @@ export const posts = [
     },
   },
   {
+    id: 2,
     title: 'How to use search engine optimization to drive sales',
-    href: '#',
+    href: '/article',
     Featured: false,
-    category: { name: 'Adventure', href: '#', color: 'bg-pink-100 text-pink-800'  },
+    category: { name: 'Adventure', href: '/adventure', color: 'bg-pink-100 text-pink-800'  },
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.',
     date: 'Mar 10, 2020',
@@ -40,10 +42,11 @@ export const posts = [
     },
   },
   {
+    id: 3,
     title: 'Improve your customer experience',
-    href: '#',
+    href: '/article',
     Featured: false,
-    category: { name: 'Travel', href: '#', color: 'bg-green-100 text-green-800' },
+    category: { name: 'Travel', href: '/travel', color: 'bg-green-100 text-green-800' },
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.',
     date: 'Feb 12, 2020',
