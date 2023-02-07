@@ -96,19 +96,6 @@ export default function BlogPost() {
           </div>
         </div>
       </div>
-
-      {data.articles.data.map((article) => (
-        <div key={article.id} className="p-5 mx-auto mb-10 shadow-lg w-96">
-          <h1 className="text-5xl">{article.attributes.title}</h1>
-          <p className="text-red-300">{article.attributes.category}</p>
-          <img src="/" alt="img" />
-          <small>console list</small>
-          <p className="mt-10 text-base">{article.attributes.description.substring(0, 200)}...</p>
-          <p className="mt-10 text-base">{article.attributes.description}</p>
-          <Link to={`/article/${article.id}`} className="text-sky-500">read more</Link>
-        </div>
-      ))}
-
     </>
   )
 }
