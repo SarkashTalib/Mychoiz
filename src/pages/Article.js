@@ -36,8 +36,8 @@ export default function Article() {
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>error </p>
-  
-    console.log(data)
+
+  console.log(data)
 
   return (
     <>
@@ -47,7 +47,6 @@ export default function Article() {
           <ReactMarkdown >
             {data.article.data.attributes.content}
           </ReactMarkdown>
-          <img src={data.article.data.attributes.coverImg.url} width={500} height={500} alt=""/>
         </div>
       </div>
     </>

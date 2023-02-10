@@ -73,7 +73,7 @@ export default function BlogPost() {
                     <div className="block mt-2 overflow-hidden">
                       <h4 className="text-xl font-semibold text-gray-900 h-14">{article.attributes.title}</h4>
                       <div className="">
-                        <p className="mt-3 text-base text-gray-500">{article.attributes.description.substring(0, 200)}</p>
+                        <p className="mt-3 text-base text-gray-500">{article.attributes.description.substring(0, 150)}</p>
                         <Link to={`/article/${article.id}`} className="text-blue-600">Read more</Link>
                       </div>
                     </div>
