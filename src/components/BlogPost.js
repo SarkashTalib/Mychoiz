@@ -1,14 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
+import Moment from "react-moment";
 
 
 // import { posts } from '../data/Posts';
 
 
-// function classNames(...classes) {
-//   return classes.filter(Boolean).join(' ')
-// }
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 // function readingcolor(...classes) {
 //   return classes.filter(Boolean).join(' ')
 // }
@@ -22,6 +23,8 @@ const ARTICLES = gql`
           title,
           description,
           content,
+          createdAt,
+          publishedAt,
           coverImg {
             data {
               id,
@@ -38,11 +41,14 @@ const ARTICLES = gql`
 `
 
 export default function BlogPost() {
-  const { loading, error, data } = useQuery(ARTICLES)
+  const { id } = useParams()
+  const { loading, error, data } = useQuery(ARTICLES, {
+    variables: { id: id }
+  })
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>error </p>
-  console.log(data)
+
   return (
     <>
       <div className="relative w-screen px-4 pt-16 pb-20 bg-gray-50 sm:px-6 lg:px-8 lg:pt-14 lg:pb-28">
@@ -56,37 +62,41 @@ export default function BlogPost() {
                 <div className="flex-shrink-0">
                   <p className="absolute m-2 text-sm font-medium text-indigo-600">
                     <a href="/" className="hover:underline">
-                      {/* <span
+                      <span
                         className={classNames(
-                          post.category.color,
-                          'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium'
+                          article.attributes.category,
+                          'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium z-50 text-white'
                         )}
                       >
-                        {post.category.name}
-                      </span> */}
+                        {article.attributes.category}
+                      </span>
                     </a>
                   </p>
-                  <img className="object-cover w-full h-60" src="" alt="" />
+                  < img className=" w-full h-60" src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`} alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`} />
+
                 </div>
                 <div className="flex flex-col justify-between flex-1 px-6 py-2 bg-white">
                   <div className="flex-1 pb-2 border-b">
                     <div className="block mt-2 overflow-hidden">
-                      <h4 className="text-xl font-semibold text-gray-900 h-14">{article.attributes.title}</h4>
-                      <div className="">
+                      <h4 className="text-xl font-semibold text-gray-900 h-14 overflow-hidden">{article.attributes.title.substring(0, 70)}</h4>
+                      <div className="flex  flex-col h-28 justify-between">
                         <p className="mt-3 text-base text-gray-500">{article.attributes.description.substring(0, 150)}</p>
-                        <Link to={`/article/${article.id}`} className="text-blue-600">Read more</Link>
+                        <Link to={`/article/${article.id}`} className="text-blue-600 bottom">Read more</Link>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center mt-2">
-                    <div className="flex space-x-1 text-sm text-gray-500">
-                      <time dateTime={article.attributes.datetime}>{article.attributes.publishedAt}</time>
-                      <span aria-hidden="true">&middot;</span>
-                      {/* <span className={readingcolor(
-                          post.readingcolor.color,
+                  <div className="flex items-center  mt-2">
+                    <div className="text-sm text-gray-500">
+                      {/* <span aria-hidden="true"></span>
+                      <span className={readingcolor(
+                        article.attributes.readingcolor.color,
                           'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium'
-                        )}>{post.readingTime} read</span> */}
+                      )}>{article.attributes.readingTime} read</span> */}
+                      <p className="">
+                        {/* <Moment form  at="MMM Do YYYY">{article.attributes.createdAt}</Moment> */}
+                        <Moment format="MMM Do YYYY">{article.attributes.publishedAt}</Moment>
+                      </p>
                     </div>
                   </div>
 
