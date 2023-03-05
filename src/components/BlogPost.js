@@ -3,17 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 import Moment from "react-moment";
 
-
-// import { posts } from '../data/Posts';
-
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-// function readingcolor(...classes) {
-//   return classes.filter(Boolean).join(' ')
-// }
-
 const ARTICLES = gql`
   query GetArticle {
     articles {
@@ -22,7 +11,15 @@ const ARTICLES = gql`
         attributes {
           title,
           description,
-          content,
+          categories {
+            data
+            {
+              id,
+              attributes {
+                name
+              }
+            }
+          },
           createdAt,
           publishedAt,
           coverImg {
@@ -58,51 +55,51 @@ export default function BlogPost() {
         <div className="relative mx-auto max-w-7xl">
           <div className="grid max-w-lg gap-5 mx-auto lg:max-w-none lg:grid-cols-3">
             {data.articles.data.map((article) => (
-              <div key={article.id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
-                <div className="flex-shrink-0">
-                  <p className="absolute m-2 text-sm font-medium text-indigo-600">
-                    <a href="/" className="hover:underline">
-                      <span
-                        className={classNames(
-                          article.attributes.category,
-                          'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium z-50 text-white'
-                        )}
-                      >
-                        {article.attributes.category}
-                      </span>
-                    </a>
-                  </p>
-                  < img className=" w-full h-60" src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`} alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`} />
+              <article key={article.id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
+                <Link to={`/article/${article.id}`} className=" cursor-auto">
+                  <div className="flex-shrink-0">
+                    <p className="absolute m-2 overflow-hidden max-w-[300px]">
+                      {article.attributes.categories.data.map((category) => (
+                        <Link to={`/category/${category.id}`} >
+                          <span
+                            key={category.id}
+                            className="px-3 m-2 text-emerald-50 bg-gray-900/20 rounded-md hover:underline"
+                          >
+                            {category.attributes.name}
+                          </span>
+                        </Link>
+                      ))}
+                    </p>
+                    <img className=" h-full w-full object-cover"
+                      src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
+                      alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
+                    />
 
-                </div>
-                <div className="flex flex-col justify-between flex-1 px-6 py-2 bg-white">
-                  <div className="flex-1 pb-2 border-b">
-                    <div className="block mt-2 overflow-hidden">
-                      <h4 className="text-xl font-semibold text-gray-900 h-14 overflow-hidden">{article.attributes.title.substring(0, 70)}</h4>
-                      <div className="flex  flex-col h-28 justify-between">
-                        <p className="mt-3 text-base text-gray-500">{article.attributes.description.substring(0, 150)}</p>
-                        <Link to={`/article/${article.id}`} className="text-blue-600 bottom">Read more</Link>
+                  </div>
+                  <div className="flex flex-col justify-between flex-1 px-6 py-2 bg-white">
+                    <div className="flex-1 pb-2 border-b">
+                      <div className="block mt-2">
+                        <h4 className="text-xl font-semibold text-gray-900 h-12">{article.attributes.title.substring(0, 70)}</h4>
+                        <div className="flex  flex-col h-24 justify-between">
+                          <p className="text-base text-gray-500">{article.attributes.description.substring(0, 130)}</p>
+                          <Link to={`/article/${article.id}`} className="text-blue-600 hover:text-emerald-600">Read more</Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="flex items-center  mt-2">
-                    <div className="text-sm text-gray-500">
-                      {/* <span aria-hidden="true"></span>
-                      <span className={readingcolor(
-                        article.attributes.readingcolor.color,
-                          'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium'
-                      )}>{article.attributes.readingTime} read</span> */}
-                      <p className="">
-                        {/* <Moment form  at="MMM Do YYYY">{article.attributes.createdAt}</Moment> */}
+                    <div className="mt-2 self-end">
+                      <p className="text-sm text-gray-500">
                         <Moment format="MMM Do YYYY">{article.attributes.publishedAt}</Moment>
                       </p>
                     </div>
-                  </div>
 
-                </div>
-              </div>
+                  </div>
+                </Link>
+              </article>
+
             ))}
+
+
           </div>
         </div>
       </div>

@@ -13,9 +13,17 @@ const ARTICLES = gql`
           title,
           description,
           content,
+          IsFeatured,
+          categories {
+            data {
+              id,
+              attributes {
+                name
+              }
+            }
+          }
           createdAt,
           publishedAt,
-          IsFeatured,
           coverImg {
             data {
               id,
@@ -30,11 +38,6 @@ const ARTICLES = gql`
     }
 }
 `
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function ContentFeatured(props) {
 
   const { id } = useParams()
@@ -61,51 +64,49 @@ export default function ContentFeatured(props) {
                 <div className="grid max-w-lg gap-5 mx-auto lg:max-w-none lg:grid-cols-3">
                   {data.articles.data.map((article) => {
                     if (article.attributes.IsFeatured === 'featured') {
-                      return <div key={article.id
-                      } className="flex flex-col overflow-hidden rounded-lg shadow-lg" >
-                        <div className="flex-shrink-0">
-                          <p className="absolute m-2 text-sm font-medium text-indigo-600">
-                            <a href="/" className="hover:underline">
-                              <span
-                                className={classNames(
-                                  article.attributes.category,
-                                  'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium z-50 text-white'
-                                )}
-                              >
-                                {article.attributes.category}
-                              </span>
-                            </a>
-                          </p>
-                          < img className=" w-full h-60" src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`} alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`} />
+                      return <article
+                        key={article.id}
+                        className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-2 pt-80 sm:pt-48 lg:pt-80"
+                      >
+                        <Link to={`/article/${article.id}`}>
+                          <img src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
+                            alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
+                            className="absolute inset-0 -z-10 h-full w-full object-cover"
+                          />
+                          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
+                          <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
 
-                        </div>
-                        <div className="flex flex-col justify-between flex-1 px-6 py-2 bg-white">
-                          <div className="flex-1 pb-2 border-b">
-                            <div className="block mt-2 overflow-hidden">
-                              <h4 className="text-xl font-semibold text-gray-900 h-14 overflow-hidden">{article.attributes.title.substring(0, 70)}</h4>
-                              <div className="flex  flex-col h-28 justify-between">
-                                <p className="mt-3 text-base text-gray-500">{article.attributes.description.substring(0, 150)}</p>
-                                <Link to={`/article/${article.id}`} className="text-blue-600 bottom">Read more</Link>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="flex items-center  mt-2">
-                            <div className="text-sm text-gray-500">
-                              {/* <span aria-hidden="true"></span>
-                          <span className={readingcolor(
-                            article.attributes.readingcolor.color,
-                              'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium'
-                          )}>{article.attributes.readingTime} read</span> */}
-                              <p className="">
-                                {/* <Moment form  at="MMM Do YYYY">{article.attributes.createdAt}</Moment> */}
-                                <Moment format="MMM Do YYYY">{article.attributes.publishedAt}</Moment>
+                          <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+                            <Moment format="MMM Do YYYY" className="mr-8">
+                              {article.attributes.publishedAt}
+                            </Moment>
+                            <div className="-ml-4 flex items-center gap-x-4">
+                              <svg viewBox="0 0 2 2" className="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50">
+                                <circle cx={1} cy={1} r={1} />
+                              </svg>
+                              <p className="absolute m-2">
+                                {article.attributes.categories.data.map((category) => (
+                                  <Link to={`/category/${category.id}`} className="">
+                                    <span
+                                      key={category.id}
+                                      className="px-2 m-2 text-emerald-50 bg-gray-900/20 rounded-md hover:text-emerald-300"
+                                    >
+                                      {category.attributes.name}
+                                    </span>
+                                  </Link>
+                                ))}
                               </p>
                             </div>
                           </div>
-
-                        </div>
-                      </div>
+                          <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
+                            {article.attributes.title}
+                          </h3>
+                          <div className="flex  flex-col h-28 justify-between">
+                            <p className="mt-3 text-base text-gray-400 h-28">{article.attributes.description.substring(0, 130)}</p>
+                            <Link to={`/article/${article.id}`} className="text-emerald-200 hover:text-emerald-500">Read more</Link>
+                          </div>
+                        </Link>
+                      </article>
                     } else {
                       return null
                     }
