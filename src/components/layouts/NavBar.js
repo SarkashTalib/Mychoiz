@@ -7,7 +7,8 @@ const navigation = [
 
 
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
+  { name: 'Category', href: '/' },
+  // { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ]
 export default function NavBar() {
@@ -15,9 +16,10 @@ export default function NavBar() {
     <Popover>
       <div className="px-4 mx-auto sm:px-6" >
         <nav className="relative flex items-center justify-between sm:h-10 md:h-14 md:justify-around" data-testid="nav" aria-label="Global">
-          <a href="/" data-testid="logo-tag">
+          <a href="/" data-testid="logo-tag" className="flex">
             <span className="sr-only">Your Company</span>
-            <h1 className="px-2 font-sans text-xl italic font-medium tracking-wider text-gray-500 uppercase md:px-0 md:text-3xl">Mychoiz</h1>
+            <img src="/logo.png" className="w-10 mr-2" alt="" />
+            <h1 className="px-2 font-sans text-xl italic font-medium tracking-wider text-gray-500 uppercase md:px-0 md:text-3xl">Choiz Place</h1>
           </a>
           <div className="flex justify-center px-2 lg:ml-6 lg:justify-center">
             <div className="max-w-lg lg:max-w-xs">

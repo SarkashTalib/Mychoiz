@@ -70,7 +70,7 @@ export default function BlogPost() {
                         </Link>
                       ))}
                     </p>
-                    <img className=" h-full w-full object-cover"
+                    <img className="h-72 w-full object-cover"
                       src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
                       alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
                     />
@@ -79,7 +79,7 @@ export default function BlogPost() {
                   <div className="flex flex-col justify-between flex-1 px-6 py-2 bg-white">
                     <div className="flex-1  border-b">
                       <div className="block mt-2">
-                        <h4 className="text-xl font-semibold text-gray-900 h-12">{article.attributes.title.substring(0, 70)}</h4>
+                        <h4 className="text-xl font-semibold text-gray-900 h-16">{article.attributes.title.substring(0, 70)}</h4>
                         <div className="flex flex-col lg:h-24 justify-between ">
                           <p className="text-sm xl:text-base text-gray-500 ">{article.attributes.description.substring(0, 130)}</p>
                           <Link to={`/article/${article.id}`} className="text-blue-600 hover:text-emerald-600">Read more</Link>
