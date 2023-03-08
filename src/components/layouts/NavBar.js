@@ -16,10 +16,10 @@ export default function NavBar() {
     <Popover>
       <div className="px-4 mx-auto sm:px-6" >
         <nav className="relative flex items-center justify-between sm:h-10 md:h-14 md:justify-around" data-testid="nav" aria-label="Global">
-          <a href="/" data-testid="logo-tag" className="flex">
+          <a href="/" data-testid="logo-tag" className="flex p-1">
             <span className="sr-only">Your Company</span>
-            <img src="/logo.png" className="w-10 mr-2" alt="" />
-            <h1 className="px-2 font-sans text-xl italic font-medium tracking-wider text-gray-500 uppercase md:px-0 md:text-3xl">Choiz Place</h1>
+            <img src="/logo.png" className="w-8 md:w-10 md:h-10 h-8 self-center mr-2" alt="logo" />
+            <h1 className="hidden md:block px-2 font-sans text-sm md:text-xl lg:text-3xl self-center italic font-medium tracking-wider text-gray-500 uppercase ">Choiz Place</h1>
           </a>
           <div className="flex justify-center px-2 lg:ml-6 lg:justify-center">
             <div className="max-w-lg lg:max-w-xs">
@@ -73,9 +73,10 @@ export default function NavBar() {
         <Popover.Panel data-testid="panel" className="absolute inset-x-0 top-0 right-0 z-10 p-2 transition origin-top-right transform md:hidden">
           <div className="overflow-hidden bg-white rounded-lg shadow-md ring-1 ring-black ring-opacity-5">
             <div className="flex items-center justify-between px-5 pt-4">
-              <a href="/" data-testid="popover">
+              <a href="/" data-testid="logo-tag" className="flex p-1">
                 <span className="sr-only">Your Company</span>
-                <h1 className="font-sans text-3xl italic font-medium tracking-wider text-gray-500 uppercase">Mychoiz</h1>
+                <img src="/logo.png" className="w-8 md:w-10 md:h-10 h-8 self-center mr-2" alt="logo" />
+                <h1 className=" px-2 font-sans text-xl lg:text-3xl self-center italic font-medium tracking-wider text-gray-500 uppercase ">Choiz Place</h1>
               </a>
               <div className="-mr-2" data-testid="popover-button">
                 <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 ">

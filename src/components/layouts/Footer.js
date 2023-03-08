@@ -38,10 +38,10 @@ const navigation = {
       href: '#',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 -4 22 22" {...props}>
-          <path  
+          <path
             fillRule="evenodd"
-            d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z" 
-            clipRule="evenodd" 
+            d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z"
+            clipRule="evenodd"
           />
         </svg>
       ),
@@ -92,9 +92,9 @@ export default function Footer() {
               </button>
             </div>
           </form>
-              <p className="mt-4 text-center text-gray-400">
-                The latest articles and resources, sent to your inbox weekly.
-              </p>
+          <p className="mt-4 text-center text-gray-400">
+            The latest articles and resources, sent to your inbox weekly.
+          </p>
         </div>
         <nav className="flex flex-wrap justify-center -mx-5 -my-2" aria-label="Footer">
           {navigation.main.map((item) => (
@@ -113,7 +113,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="mt-8 text-base text-center text-gray-400">&copy; 2022 Mychoiz All rights reserved.</p>
+        <p className="mt-8 text-base text-center text-gray-400">&copy; 2022 ChoizPlace</p>
       </div>
     </footer>
   )

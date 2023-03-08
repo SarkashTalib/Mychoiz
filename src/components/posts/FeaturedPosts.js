@@ -45,9 +45,7 @@ export default function FeaturedPosts() {
     <>
       <div className="flex flex-col items-center justify-center flex-shrink-0 mt-10">
         <h1 className="pb-4 text-4xl border-b text-emerald-600">Featured Posts</h1>
-        <div>
-          <Posts />
-        </div>
+        <Posts />
       </div>
     </>
   )
@@ -72,7 +70,7 @@ function Posts(props) {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center flex-shrink-0 mt-10">
+      <div className="flex flex-col items-center justify-center flex-shrink-0 md:mt-10">
         <div>
           <div>
             <div className="relative w-screen px-4 pt-16 pb-20 bg-gray-50 sm:px-6 lg:px-8 lg:pt-14 lg:pb-28">
@@ -85,7 +83,7 @@ function Posts(props) {
                     if (article.attributes.IsFeatured === 'featured') {
                       return <article
                         key={article.id}
-                        className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-2 pt-80 sm:pt-48 lg:pt-80"
+                        className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
                       >
                         <Link to={`/article/${article.id}`}>
                           <img src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
