@@ -26,17 +26,15 @@ export default function CategoriesMenu() {
   return (
 
     <div div className="bg-gray-100" >
-      {/* <Link to="/"><h1 className="">Category</h1></Link> */}
-      <nav className="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <p className='text-base font-semibold text-center text-gray-500'>What are you looking for?</p>
-        <div className="flex justify-center gap-2 mt-6 md:gap-20 ">
+      <nav className="px-4 py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <p className='text-base lg:text-lg font-semibold text-center text-gray-500'>What are you looking for?</p>
+        <div className="flex justify-center flex-wrap xl:flex-nowrap gap-2 mt-6 md:gap-5 lg:gap-10 ">
           {data.categories.data.map(category => (
             <Link
               key={category.id}
               to={`/category/${category.id}`}
-              className="flex justify-center col-span-1 md:col-span-2 lg:col-span-1"
             >
-              <span className="px-4 py-2 text-xl text-gray-400 duration-200 rounded-lg sm:text-3xl hover:bg-white">
+              <span className="px-4 py-2  text-xl text-gray-400 duration-200 rounded-lg sm:text-3xl hover:bg-white">
                 {category.attributes.name}
               </span>
 

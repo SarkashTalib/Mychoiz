@@ -53,9 +53,9 @@ export default function BlogPost() {
           <div className="bg-white h-1/3 sm:h-2/3" />
         </div>
         <div className="relative mx-auto max-w-7xl">
-          <div className="grid max-w-lg gap-5 mx-auto lg:max-w-none lg:grid-cols-3">
+          <div className="grid max-w-lg gap-5 mx-auto lg:max-w-none  lg:grid-cols-3">
             {data.articles.data.map((article) => (
-              <article key={article.id} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
+              <article key={article.id} className="flex flex-col overflow-hidden rounded-lg shadow-sm">
                 <Link to={`/article/${article.id}`} className=" cursor-auto">
                   <div className="flex-shrink-0">
                     <p className="absolute m-2 overflow-hidden max-w-[300px]">
@@ -77,11 +77,11 @@ export default function BlogPost() {
 
                   </div>
                   <div className="flex flex-col justify-between flex-1 px-6 py-2 bg-white">
-                    <div className="flex-1 pb-2 border-b">
+                    <div className="flex-1  border-b">
                       <div className="block mt-2">
                         <h4 className="text-xl font-semibold text-gray-900 h-12">{article.attributes.title.substring(0, 70)}</h4>
-                        <div className="flex  flex-col h-24 justify-between">
-                          <p className="text-base text-gray-500">{article.attributes.description.substring(0, 130)}</p>
+                        <div className="flex flex-col lg:h-24 justify-between ">
+                          <p className="text-sm xl:text-base text-gray-500 ">{article.attributes.description.substring(0, 130)}</p>
                           <Link to={`/article/${article.id}`} className="text-blue-600 hover:text-emerald-600">Read more</Link>
                         </div>
                       </div>

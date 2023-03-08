@@ -2,16 +2,16 @@ import React from 'react';
 
 import CategoriesMenu from '../components/CategoriesMenu';
 import Hero from '../components/Hero';
-import ContentPosts from "../components/ContentPosts";
-import ContentFeatured from '../components/ContentFeatured';
+import RecentPosts from "../components/posts/RecentPosts";
+import FeaturedPosts from '../components/posts/FeaturedPosts';
 
 export default function Home() {
   return (
     <div>
       <Hero />
-      <ContentFeatured />
+      <FeaturedPosts />
       <CategoriesMenu />
-      <ContentPosts />
+      <RecentPosts />
     </div>
   )
 }

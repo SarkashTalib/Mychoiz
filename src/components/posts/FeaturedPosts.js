@@ -38,7 +38,7 @@ const ARTICLES = gql`
     }
 }
 `
-export default function ContentFeatured(props) {
+export default function FeaturedPosts(props) {
 
   const { id } = useParams()
   const { loading, error, data } = useQuery(ARTICLES, {

@@ -5,8 +5,8 @@ import Category from "./pages/Category";
 
 import Article from "./pages/Article";
 
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import NavBar from "./components/layouts/NavBar";
+import Footer from "./components/layouts/Footer";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
