@@ -69,7 +69,7 @@ function BlogPost() {
 
   return (
     <>
-      <div className="relative w-screen px-4 pt-16 pb-20 bg-gray-50 sm:px-6 lg:px-8 lg:pt-14 lg:pb-28">
+      <div className="relative w-screen bg-gray-50 px-4 pt-16 pb-20  sm:px-6 lg:px-8 lg:pt-14 lg:pb-28">
         <div className="absolute inset-0">
           <div className="bg-white h-1/3 sm:h-2/3" />
         </div>

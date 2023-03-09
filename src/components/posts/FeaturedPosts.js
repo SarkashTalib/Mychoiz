@@ -115,7 +115,7 @@ function Posts(props) {
                               </p>
                             </div>
                           </div>
-                          <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
+                          <h3 className="mt-3 text-lg font-semibold leading-6 text-white lg:h-16 xl:h-12">
                             {article.attributes.title}
                           </h3>
                           <div className="flex  flex-col h-28 justify-between">

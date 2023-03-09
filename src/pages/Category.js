@@ -57,12 +57,14 @@ export default function Category() {
 
   return (
     <div className="flex flex-col">
-      <h1 className="w-full text-center text-5xl font-mono font-semibold text-gray-600 p-5 my-5 bg-teal-900/30 shadow-teal-100/20 shadow-2xl ">{data.category.data.attributes.name}</h1>
-      <div className="grid grid-cols-4 gap-5">
+      <h1 className="w-full text-center text-5xl text-gray-600 p-5 my-5 bg-gray-50 shadow-gray-50 shadow-2xl ">{data.category.data.attributes.name}</h1>
+      <div className="grid lg:grid-cols-3 max-w-lg lg:max-w-none mx-auto gap-5 px-4 pt-8 pb-20  sm:px-6 lg:px-8 lg:pt-14 lg:pb-28">
+
+        {/* <div className="relative mx-auto max-w-7xl"> */}
         {data.category.data.attributes.articles.data.map((article) => (
           <article
             key={article.id}
-            className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-2 pt-80 sm:pt-48 lg:pt-80"
+            className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
           >
             <Link to={`/article/${article.id}`}>
               <img src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
@@ -76,25 +78,9 @@ export default function Category() {
                 <Moment format="MMM Do YYYY" className="mr-8">
                   {article.attributes.publishedAt}
                 </Moment>
-                {/* <div className="-ml-4 flex items-center gap-x-4">
-                  <svg viewBox="0 0 2 2" className="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50">
-                    <circle cx={1} cy={1} r={1} />
-                  </svg>
-                  <p className="absolute m-2">
-                    {article.attributes.categories.data.map((category) => (
-                      <Link to={`/category/${category.id}`} className="">
-                        <span
-                          key={category.id}
-                          className="px-2 m-2 text-emerald-50 bg-gray-900/20 rounded-md hover:text-emerald-300"
-                        >
-                          {category.attributes.name}
-                        </span>
-                      </Link>
-                    ))}
-                  </p>
-                </div> */}
+
               </div>
-              <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
+              <h3 className="mt-3 text-lg font-semibold leading-6 text-white lg:h-16 xl:h-12">
                 {article.attributes.title}
               </h3>
               <div className="flex  flex-col h-28 justify-between">
