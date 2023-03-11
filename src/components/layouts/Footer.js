@@ -96,7 +96,7 @@ export default function Footer() {
             The latest articles and resources, sent to your inbox weekly.
           </p>
         </div>
-        <nav className="flex flex-wrap justify-center -mx-5 -my-2" aria-label="Footer">
+        {/* <nav className="flex flex-wrap justify-center -mx-5 -my-2" aria-label="Footer">
           {navigation.main.map((item) => (
             <div key={item.name} className="px-5 py-2">
               <a href={item.href} className="text-base text-emerald-600 hover:text-sky-400">
@@ -104,7 +104,7 @@ export default function Footer() {
               </a>
             </div>
           ))}
-        </nav>
+        </nav> */}
         <div className="flex justify-center mt-8 space-x-6">
           {navigation.social.map((item) => (
             <a key={item.name} href={item.href} className="self-center text-gray-400 hover:text-gray-500">

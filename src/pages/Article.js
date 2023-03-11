@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactMarkdown from "react-markdown";
+import parse from 'html-react-parser';
 import { useQuery, gql } from '@apollo/client';
 
 import { Link, useParams } from 'react-router-dom'
@@ -52,6 +52,16 @@ export default function Article() {
   </div>
   if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble loading the article</p>
 
+
+  const options = {
+    replace: (node) => {
+      if (node.name === 'img') {
+        const { src, alt, caption } = node.attribs;
+        return <img src={src} alt={alt} caption={caption} />;
+      }
+    },
+  };
+
   return (
     <>
       <div className="bg-white py-32 px-6 lg:px-8">
@@ -59,9 +69,8 @@ export default function Article() {
           <p className="text-sm font-semibold leading-7 ">
             {data.article.data.attributes.categories.data.map((category) => (
 
-              <Link to={`/category/${category.id}`}>
+              <Link to={`/category/${category.id}`} key={category.id}>
                 <span
-                  key={category.id}
                   className=" pr-5 text-emerald-600/50 hover:text-sky-400"
                 >
                   {category.attributes.name}
@@ -78,34 +87,24 @@ export default function Article() {
               alt={`${process.env.REACT_APP_BACKEND_URL}${data.article.data.attributes.coverImg.data[0].attributes['alternativeText']}`}
             />
             <figcaption className="mt-4 flex gap-x-2 text-sm leading-6 text-gray-500">
-              {/* <InformationCircleIcon className="mt-0.5 h-5 w-5 flex-none text-gray-300" aria-hidden="true" /> */}
               {`${data.article.data.attributes.coverImg.data[0].attributes['caption']}`}
             </figcaption>
           </figure>
-          <div className="mt-10 max-w-3xl">
-            <ReactMarkdown>
-              {data.article.data.attributes.content}
-            </ReactMarkdown>
+          <div className="mt-10 max-w-3xl" key={data.article.data.attributes.content.id}>
+            {parse(data.article.data.attributes.content, options)}
           </div>
-
-          {/* 
-
-          <div className="mt-16 max-w-3xl">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">Everything you need to get up and running</h2>
-            <p className="mt-6">
-              Purus morbi dignissim senectus mattis adipiscing. Amet, massa quam varius orci dapibus volutpat cras. In
-              amet eu ridiculus leo sodales cursus tristique. Tincidunt sed tempus ut viverra ridiculus non molestie.
-              Gravida quis fringilla amet eget dui tempor dignissim. Facilisis auctor venenatis varius nunc, congue erat
-              ac. Cras fermentum convallis quam.
-            </p>
-            <p className="mt-8">
-              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae
-              sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.
-            </p>
-          </div> */}
-
         </div>
       </div>
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
