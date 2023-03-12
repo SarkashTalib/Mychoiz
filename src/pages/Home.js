@@ -7,11 +7,11 @@ import FeaturedPosts from '../components/posts/FeaturedPosts';
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Hero />
       <FeaturedPosts />
       <CategoriesMenu />
       <RecentPosts />
-    </div>
+    </>
   )
 }
