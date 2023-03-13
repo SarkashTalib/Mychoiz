@@ -8,7 +8,7 @@ const ARTICLES = gql`
   query GetArticle {
     articles {
       data {
-        id,
+        
         attributes {
           title,
           description,
@@ -56,7 +56,7 @@ export default function FeaturedPosts() {
 function Posts(props) {
   const { slug } = useParams()
   const { loading, error, data } = useQuery(ARTICLES, {
-    variables: { slug: slug }
+    variables: { slug }
   })
 
   if (loading) return <Loading />
@@ -77,7 +77,7 @@ function Posts(props) {
                   {[...data.articles.data].reverse().map((article) => {
                     if (article.attributes.IsFeatured === 'featured') {
                       return <article
-                        key={article.attributes.slug}
+                        key={article.id}
                         className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
                       >
                         <Link to={`/article/${article.attributes.slug}`}>

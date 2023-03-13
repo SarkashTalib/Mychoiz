@@ -9,7 +9,7 @@ const ARTICLE = gql`
   query GetArticle($slug: String!) {
     article(slug: $slug) {
       data {
-        id
+        
         attributes {
           title,
           description,
@@ -42,7 +42,7 @@ const ARTICLE = gql`
 export default function Article() {
   const { slug } = useParams()
   const { loading, error, data } = useQuery(ARTICLE, {
-    variables: { slug: slug }
+    variables: { slug }
   })
 
   if (loading) return <Loading />
