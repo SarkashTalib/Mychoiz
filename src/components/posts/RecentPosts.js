@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 import Moment from "react-moment";
 import Loading from '../Loading';
+import ErrorBoundary from '../ErrorBoundary';
 
 export default function RecentPosts(props) {
   return (
@@ -10,7 +11,9 @@ export default function RecentPosts(props) {
       <div className="flex flex-col items-center justify-center flex-shrink-0 mt-10">
         <h1 className="pb-4 text-4xl border-b text-emerald-600">Most Recent</h1>
         <div>
-          <BlogPost />
+          <ErrorBoundary>
+            <BlogPost />
+          </ErrorBoundary>
         </div>
       </div>
     </>
@@ -33,7 +36,7 @@ const ARTICLES = gql`
             {
               id,
               attributes {
-                name
+                name,
               }
             }
           },
@@ -62,6 +65,7 @@ function BlogPost() {
 
   if (loading) return <Loading />
   if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble fetching you content</p>
+  if (!data.articles.data.length) return <p className="text-center text-gray-500 text-lg p-10">No articles found</p>;
 
   return (
     <>
@@ -115,7 +119,6 @@ function BlogPost() {
               </article>
 
             ))}
-
 
           </div>
         </div>
