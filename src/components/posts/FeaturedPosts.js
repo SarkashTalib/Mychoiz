@@ -9,7 +9,7 @@ const ARTICLES = gql`
   query GetArticle {
     articles {
       data {
-        
+        id
         attributes {
           title,
           description,
@@ -20,10 +20,10 @@ const ARTICLES = gql`
             data {
               id,
               attributes {
-                name,
+                name
               }
             }
-          }
+          },
           createdAt,
           publishedAt,
           coverImg {
@@ -48,19 +48,20 @@ export default function FeaturedPosts() {
       <div className="flex flex-col items-center justify-center flex-shrink-0 mt-10">
         <h1 className="pb-4 text-4xl border-b text-emerald-600">Featured Posts</h1>
         <ErrorBoundary>
-          <Posts />
+          <Posts key='key' />
         </ErrorBoundary>
       </div>
     </>
   )
-}
+};
 
 
-function Posts(props) {
+function Posts() {
+
   const { slug } = useParams()
   const { loading, error, data } = useQuery(ARTICLES, {
     variables: { slug }
-  })
+  });
 
   if (loading) return <Loading />
   if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble fetching you featured articles</p>
@@ -79,12 +80,13 @@ function Posts(props) {
               {[...data.articles.data].reverse().map((article) => {
                 if (article.attributes.IsFeatured === 'featured') {
                   return <article
-                    key={article.attributes.slug}
+                    key={article.id}
                     className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
                   >
-                    <Link to={`/article/${article.attributes.slug}`}>
+                    <Link to={`/article/${article.attributes.slug}`} key={`/article/${article.attributes.slug}`}>
                       <img src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
                         alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
+                        key={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data['id']}`}
                         className="absolute inset-0 -z-10 h-full w-full object-cover"
                       />
                       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
@@ -100,7 +102,7 @@ function Posts(props) {
                           </svg>
                           <div className="absolute m-2">
                             {article.attributes.categories.data.map((category) => (
-                              <Link to={`/category/${category.attributes.slug}`} key={category.attributes.slug}>
+                              <Link to={`/category/${category.id}`} key={`/category/${category.id}`}>
                                 <span
 
                                   className="px-2 m-2 text-emerald-50 bg-gray-900/20 rounded-md hover:text-emerald-300"

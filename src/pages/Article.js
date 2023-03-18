@@ -19,8 +19,7 @@ const ARTICLE = gql`
             data{
               id,
               attributes {
-                name,
-                slug
+                name
               }
             }
           },
@@ -68,7 +67,7 @@ export default function Article() {
             <div className="text-sm font-semibold leading-7 ">
               {article.attributes.categories.data.map((category) => (
 
-                <Link to={`/category/${category.attributes.slugmenu}`} key={category.attributes.slugmenu}>
+                <Link to={`/category/${category.id}`} key={category.id}>
                   <span
                     className=" pr-5 text-emerald-600/50 hover:text-sky-400"
                   >
