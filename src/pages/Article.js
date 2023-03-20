@@ -3,7 +3,8 @@ import Loading from '../components/Loading';
 
 import { Link, useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
-import parse from 'html-react-parser';
+import { CustomContentField } from '../components/posts/CustomContentField';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 const ARTICLE = gql`
   query GetArticle($slug: String!) {
@@ -49,16 +50,6 @@ export default function Article() {
   if (loading) return <Loading />
   if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble loading the article</p>
 
-
-  const options = {
-    replace: (node) => {
-      if (node.name === 'img') {
-        const { src, alt, caption } = node.attribs;
-        return <img src={src} alt={alt} caption={caption} />;
-      }
-    },
-  };
-
   return (
     <>
       <div className="bg-white py-32 px-6 lg:px-8">
@@ -81,6 +72,7 @@ export default function Article() {
             <figure className="mt-16">
               <img
                 className="aspect-video rounded-xl bg-gray-50 object-cover"
+                key={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data.id}`}
                 src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
                 alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
               />
@@ -88,9 +80,9 @@ export default function Article() {
                 {`${article.attributes.coverImg.data[0].attributes['caption']}`}
               </figcaption>
             </figure>
-            <div className="mt-10 max-w-3xl" key={article.attributes.content.id}>
-              {parse(article.attributes.content, options)}
-            </div>
+            <ErrorBoundary>
+              <CustomContentField key={CustomContentField} />
+            </ErrorBoundary>
           </div>
         ))}
 

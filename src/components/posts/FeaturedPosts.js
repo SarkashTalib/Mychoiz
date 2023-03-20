@@ -84,11 +84,13 @@ function Posts() {
                     className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
                   >
                     <Link to={`/article/${article.attributes.slug}`} key={`/article/${article.attributes.slug}`}>
+
                       <img src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
                         alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
-                        key={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data['id']}`}
+                        key={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data.id}`}
                         className="absolute inset-0 -z-10 h-full w-full object-cover"
                       />
+
                       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                       <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
 
@@ -100,6 +102,7 @@ function Posts() {
                           <svg viewBox="0 0 2 2" className="-ml-0.5 h-0.5 w-0.5 flex-none fill-white/50">
                             <circle cx={1} cy={1} r={1} />
                           </svg>
+
                           <div className="absolute m-2">
                             {article.attributes.categories.data.map((category) => (
                               <Link to={`/category/${category.id}`} key={`/category/${category.id}`}>
@@ -112,6 +115,7 @@ function Posts() {
                               </Link>
                             ))}
                           </div>
+
                         </div>
                       </div>
                       <h3 className="mt-3 text-lg font-semibold leading-6 text-white lg:h-16 xl:h-12">

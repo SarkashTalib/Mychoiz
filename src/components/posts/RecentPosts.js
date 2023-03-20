@@ -26,7 +26,7 @@ const ARTICLES = gql`
   query GetArticle {
     articles {
       data {
-        
+        id
         attributes {
           title,
           description,
@@ -79,6 +79,7 @@ function BlogPost() {
               <article key={article.attributes.slug} className="flex flex-col overflow-hidden rounded-lg shadow-sm">
                 <Link to={`/article/${article.attributes.slug}`} className=" cursor-auto">
                   <div className="flex-shrink-0">
+
                     <div className="absolute m-2 overflow-hidden max-w-[300px]">
                       {article.attributes.categories.data.map((category) => (
                         <Link to={`/category/${category.id}`} key={category.id}>
@@ -91,9 +92,11 @@ function BlogPost() {
                         </Link>
                       ))}
                     </div>
+
                     <img className="h-72 w-full object-cover"
                       src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
                       alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
+                      key={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data.id}`}
                     />
 
                   </div>
