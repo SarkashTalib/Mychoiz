@@ -118,14 +118,14 @@ function Posts() {
 
                         </div>
                       </div>
-                      <h3 className="mt-3 text-lg font-semibold leading-6 text-white lg:h-16 xl:h-12">
+                      <h2 className="mt-3 text-lg font-semibold leading-6 text-white line-clamp-1">
                         {article.attributes.title}
-                      </h3>
+                      </h2>
                       <div className="flex  flex-col h-28 justify-between">
-                        <p className="mt-3 text-base text-gray-400 h-28">{article.attributes.description.substring(0, 130)}</p>
+                        <p className="mt-3 text-base text-gray-400  line-clamp-4">{article.attributes.description}</p>
                       </div>
                     </Link>
-                    <Link to={`/article/${article.attributes.slug}`} key={article.attributes.slug} className="text-emerald-200 hover:text-emerald-500">Read more</Link>
+                    <Link to={`/article/${article.attributes.slug}`} key={article.attributes.slug} className="text-emerald-200 hover:text-emerald-500">Read all the article</Link>
                   </article>
                 } else {
                   return null

@@ -18,7 +18,7 @@ export default function NavBar() {
         <nav className="relative flex items-center justify-between sm:h-10 md:h-14 md:justify-around" data-testid="nav" aria-label="Global">
           <a href="/" data-testid="logo-tag" className="flex p-1">
             <span className="sr-only">Your Company</span>
-            <img src="/logo.png" className="w-8 md:w-10 md:h-10 h-8 self-center mr-2" alt="logo" />
+            <img src="/logo.png" className="w-8 h-8 md:w-10 md:h-10  self-center mr-2" alt="logo" />
             <h1 className="hidden md:block px-2 font-sans text-sm md:text-xl lg:text-3xl self-center italic font-medium tracking-wider text-gray-500 uppercase ">Choiz Place</h1>
           </a>
           <div className="flex justify-center px-2 lg:ml-6 lg:justify-center">

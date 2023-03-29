@@ -10,7 +10,6 @@ const ARTICLE = gql`
   query GetArticle($slug: String!) {
     articles(filters: { slug: { eq: $slug } }) {
       data {
-        id
         attributes{
           title
           description

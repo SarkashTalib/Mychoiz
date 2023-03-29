@@ -9,9 +9,9 @@ const ARTICLE = gql`
   query GetArticle($slug: String!) {
     articles(filters: { slug: { eq: $slug } }) {
       data {
-        id
         attributes{
-          content
+          content,
+          slug
         }
       }
     }
@@ -45,10 +45,10 @@ export const CustomContentField = () => {
 
   return (
     <>
-      <div className="bg-white py-32 px-6 lg:px-8">
+      <div className="py-20 px-2">
         {data.articles.data.map((article) => (
-          <div key={article.attributes.slug} className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
-            <div className="mt-10 max-w-3xl" key={article.attributes.content.index}>
+          <div key={article.attributes.slug} className=" mx-auto max-w-3xl text-base leading-7 text-gray-700">
+            <div className="mt-10 max-w-3xl text-justify">
               {parse(article.attributes.content, options)}
             </div>
           </div>
