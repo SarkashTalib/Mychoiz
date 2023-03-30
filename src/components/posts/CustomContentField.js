@@ -30,7 +30,7 @@ export const CustomContentField = () => {
       if (node.name === 'img') {
         const { src, alt, caption, srcSet } = node.attribs;
         return <img
-          src={`${process.env.REACT_APP_BACKEND_URL}${src}`}
+          src={`${src}`}
           srcSet={srcSet}
           alt={alt}
           title={caption}

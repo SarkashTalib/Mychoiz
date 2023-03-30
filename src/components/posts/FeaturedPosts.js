@@ -85,9 +85,9 @@ function Posts() {
                   >
                     <Link to={`/article/${article.attributes.slug}`} key={`/article/${article.attributes.slug}`}>
 
-                      <img src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
-                        alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
-                        key={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data.id}`}
+                      <img src={`${article.attributes.coverImg.data.attributes['url']}`}
+                        alt={`${article.attributes.coverImg.data.attributes['alternativeText']}`}
+                        key={`${article.attributes.coverImg.data.id}`}
                         className="absolute inset-0 -z-10 h-full w-full object-cover"
                       />
 

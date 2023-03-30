@@ -94,9 +94,9 @@ function BlogPost() {
                     </div>
 
                     <img className="h-72 w-full object-cover"
-                      src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
-                      alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
-                      key={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data.id}`}
+                      src={`${article.attributes.coverImg.data.attributes['url']}`}
+                      alt={`${article.attributes.coverImg.data.attributes['alternativeText']}`}
+                      key={`${article.attributes.coverImg.data.id}`}
                     />
 
                   </div>
