@@ -38,7 +38,7 @@ const ARTICLES = gql`
         }
       }
     }
-}
+  }
 `
 
 export default function FeaturedPosts() {
@@ -125,7 +125,14 @@ function Posts() {
                         <p className="mt-3 text-base text-gray-400  line-clamp-4">{article.attributes.description}</p>
                       </div>
                     </Link>
-                    <Link to={`/article/${article.attributes.slug}`} key={article.attributes.slug} className="text-emerald-200 hover:text-emerald-500">Read all the article</Link>
+
+                    <Link
+                      to={`/article/${article.attributes.slug}`}
+                      key={article.attributes.slug}
+                      className="text-emerald-200 hover:text-emerald-500">
+                      Read all the article
+                    </Link>
+
                   </article>
                 } else {
                   return null

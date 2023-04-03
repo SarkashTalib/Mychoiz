@@ -49,8 +49,6 @@ export default function Article() {
   if (loading) return <Loading />
   if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble loading the article</p>
 
-
-  // console.log("images", data)
   return (
     <>
       <div className="bg-white py-32 px-6 lg:px-8">
@@ -71,7 +69,7 @@ export default function Article() {
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{article.attributes.title}</h1>
             <p className="mt-6 text-xl leading-8">{article.attributes.description}</p>
             <figure className="mt-16">
-              {console.log('images', article)}
+
               <img
                 className="aspect-video rounded-xl bg-gray-50 object-cover"
                 key={`${article.attributes.coverImg.data.id}`}

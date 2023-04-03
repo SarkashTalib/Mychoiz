@@ -54,17 +54,21 @@ export default function Category() {
 
   return (
     <div className="flex flex-col">
-      <h1 className="w-full text-center text-5xl text-gray-600 p-5 my-5 bg-gray-50 shadow-gray-50 shadow-2xl ">{data.category.data.attributes.name}</h1>
+      <h1 className="w-full text-center text-5xl text-gray-600 p-5 my-5 bg-gray-50 shadow-gray-50 shadow-2xl ">
+        {data.category.data.attributes.name}
+      </h1>
       <div className="grid lg:grid-cols-3 max-w-lg lg:max-w-7xl mx-auto gap-5 px-4 pt-8 pb-20  sm:px-6 lg:px-8 lg:pt-14 lg:pb-28">
 
         {data.category.data.attributes.articles.data.map((article) => (
           <article
-            key={article.id}
+            key={article.attributes.slug}
             className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
           >
             <Link to={`/article/${article.attributes.slug}`}>
-              <img src={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['url']}`}
-                alt={`${process.env.REACT_APP_BACKEND_URL}${article.attributes.coverImg.data[0].attributes['alternativeText']}`}
+              <img
+                src={`${article.attributes.coverImg.data.attributes['url']}`}
+                alt={`${article.attributes.coverImg.data.attributes['alternativeText']}`}
+                key={`${article.attributes.coverImg.data.id}`}
                 className="absolute inset-0 -z-10 h-full w-full object-cover"
               />
               <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
@@ -74,16 +78,24 @@ export default function Category() {
                 <Moment format="MMM Do YYYY" className="mr-8">
                   {article.attributes.publishedAt}
                 </Moment>
+              </div>
 
-              </div>
-              <h3 className="mt-3 text-lg font-semibold leading-6 text-white lg:h-16 xl:h-12">
+              <h2 className="mt-3 text-lg font-semibold leading-6 text-white line-clamp-1">
                 {article.attributes.title}
-              </h3>
+              </h2>
+
               <div className="flex  flex-col h-28 justify-between">
-                <p className="mt-3 text-base text-gray-400 h-28">{article.attributes.description.substring(0, 130)}</p>
+                <p className="mt-3 text-base text-gray-400  line-clamp-4">{article.attributes.description}</p>
               </div>
+
             </Link>
-            <Link to={`/article/${article.attributes.slug}`} className="text-emerald-200 hover:text-emerald-500">Read more</Link>
+
+            <Link
+              to={`/article/${article.attributes.slug}`}
+              key={article.attributes.slug}
+              className="text-emerald-200 hover:text-emerald-500">
+              Read all the article
+            </Link>
           </article>
 
         ))}
