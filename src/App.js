@@ -10,6 +10,7 @@ import Article from "./pages/Article";
 
 import NavBar from "./components/layouts/NavBar";
 import Footer from "./components/layouts/Footer";
+import NotFoundPage from './pages/NotFoundPage';
 
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -34,8 +35,7 @@ function App() {
             <Route path="/article/:slug" element={<Article />} />
             <Route path="/category/:id" element={<Category />} />
 
-            <Route path="*" element={<p className="text-center text-red-400">Unfound url</p>} />
-
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
           <Footer />
         </ApolloProvider>
