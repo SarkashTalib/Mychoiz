@@ -68,7 +68,7 @@ export default function Footer() {
       <div className="px-4 py-12 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
         <div className="p-4 mb-6 lg:flex lg:flex-col lg:items-center lg:justify-between xl:mt-0">
           <div>
-            <h3 className="text-3xl font-medium text-gray-500">Subscribe to our newsletter</h3>
+            <h2 className="text-3xl text-gray-800">Subscribe to our newsletter</h2>
           </div>
           <form className="mt-4 sm:flex sm:max-w-md">
             <label htmlFor="email-address" className="sr-only">
@@ -113,7 +113,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="mt-8 text-base text-center text-gray-400">&copy; 2022 ChoizPlace</p>
+        <p className="mt-8 text-base text-center text-gray-400">&copy; 2022-2023 ChoizPlace</p>
       </div>
     </footer>
   )

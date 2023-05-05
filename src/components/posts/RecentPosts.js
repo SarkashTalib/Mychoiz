@@ -12,7 +12,7 @@ export default function RecentPosts(props) {
         <h1 className="pb-4 text-4xl border-b text-emerald-600">Most Recent</h1>
         <div>
           <ErrorBoundary>
-            <BlogPost />
+            <BlogPost key="key" />
           </ErrorBoundary>
         </div>
       </div>
@@ -63,8 +63,8 @@ function BlogPost() {
     variables: { slug }
   })
 
-  if (loading) return <Loading />
-  if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble fetching you content</p>
+  if (loading) return <Loading />;
+  if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble fetching you content</p>;
   if (!data.articles.data.length) return <p className="text-center text-gray-500 text-lg p-10">No articles found</p>;
 
   return (
@@ -76,10 +76,9 @@ function BlogPost() {
         <div className="relative mx-auto max-w-7xl">
           <div className="grid max-w-lg gap-5 mx-auto lg:max-w-none  lg:grid-cols-3">
             {[...data.articles.data].reverse().map((article) => (
-              <article key={article.attributes.slug} className="flex flex-col overflow-hidden rounded-lg shadow-sm">
+              <article key={article.attributes.slug} className="flex flex-col overflow-hidden rounded-lg shadow-sm" >
                 <Link to={`/article/${article.attributes.slug}`} className=" cursor-auto">
                   <div className="flex-shrink-0">
-
                     <div className="absolute m-2 overflow-hidden max-w-[300px]">
                       {article.attributes.categories.data.map((category) => (
                         <Link to={`/category/${category.id}`} key={category.id}>
@@ -125,7 +124,7 @@ function BlogPost() {
 
           </div>
         </div>
-      </div>
+      </div >
     </>
   )
 }

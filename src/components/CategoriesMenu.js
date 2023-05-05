@@ -29,7 +29,7 @@ export default function CategoriesMenu() {
 
   return (
 
-    <div div className="bg-gray-100" >
+    <div className="bg-gray-100" >
       <nav className="px-4 py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <h2 className='text-base lg:text-xl text-center text-gray-900'>What are you looking for?</h2>
         <ErrorBoundary>
