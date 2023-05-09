@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+
 import Loading from './Loading';
+
+import { useQuery, gql } from '@apollo/client';
 import ErrorBoundary from './ErrorBoundary';
 
 

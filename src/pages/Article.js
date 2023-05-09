@@ -1,5 +1,6 @@
 import React from 'react';
 import Loading from '../components/Loading';
+import NotFoundPage from './NotFoundPage';
 
 import { Link, useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
@@ -48,6 +49,10 @@ export default function Article() {
 
   if (loading) return <Loading />
   if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble loading the article</p>
+
+  if (!data.articles || data.articles?.data?.length === 0) {
+    return <NotFoundPage />
+  }
 
   return (
     <>

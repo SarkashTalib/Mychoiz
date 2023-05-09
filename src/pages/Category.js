@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import { useQuery, gql } from '@apollo/client'
 import { useParams, Link } from 'react-router-dom'
 import Loading from '../components/Loading';
+import NotFoundPage from './NotFoundPage';
 
 
 const CATEGORY = gql`
@@ -49,8 +50,10 @@ export default function Category() {
 
   if (loading) return <Loading />
   if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble fetching you content</p>
-  if (!data.category.data.attributes.articles.data.length) return <p className="text-center text-gray-500 text-lg p-10">No articles found</p>;
 
+  if (!data.category || !data.category.data || !data.category.data.id || !data.category.data.attributes.articles.data.length) {
+    return <NotFoundPage />;
+  }
 
   return (
     <div className="flex flex-col">
