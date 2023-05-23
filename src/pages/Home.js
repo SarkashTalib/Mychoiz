@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 
 import Loading from '../components/Loading';
 
+import SearchResults from '../components/SearchResults'
 
 import CategoriesMenu from '../components/CategoriesMenu';
 import Hero from '../components/Hero';
@@ -15,6 +16,7 @@ import ARTICLES_QUERY from '../queries/ArticlesQuery';
 
 
 export default function Home() {
+
   const { slug } = useParams()
   const { loading, error, data } = useQuery(ARTICLES_QUERY, {
     variables: { slug }
@@ -29,9 +31,10 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <SearchResults />
       <FeaturedPosts articles={articles} />
-      <CategoriesMenu />
       <RecentPosts articles={articles} />
+      <CategoriesMenu />
     </>
   )
 }
