@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from "react-moment";
 import { useQuery } from '@apollo/client';
-import ARTICLES_QUERY from '../queries/ArticlesQuery'
+import ARTICLES_QUERY from '../queries/ArticlesQuery';
+import Loading from './Loading';
 
 
 
-const SearchResults = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [data, setData] = useState([]);
+const SearchResults = ({ searchTerm }) => {
+  const [, setData] = useState([]); //data is removed to prevent unsed eslint warnings
   const [filteredData, setFilteredData] = useState([]);
 
   const { loading, error, data: articlesData } = useQuery(ARTICLES_QUERY);
@@ -29,15 +29,12 @@ const SearchResults = () => {
     );
   };
 
-
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    console.log('search term', event.target.value)
-  };
+  if (loading) return <Loading />;
+  if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble fetching you content</p>;
+  if (filteredData.length === 0) return <p className="text-center text-gray-500 text-lg p-10">Nothing Found!</p>;
 
   return (
     <div className="flex-col flex" >
-      <input type="text" value={searchTerm} className='mx-auto text-2xl text-gray-500' placeholder='search' onChange={handleSearch} />
 
       {searchTerm ? (
         <div className="flex flex-col items-center justify-center flex-shrink-0 md:mt-10">

@@ -15,7 +15,7 @@ import FeaturedPosts from '../components/posts/FeaturedPosts';
 import ARTICLES_QUERY from '../queries/ArticlesQuery';
 
 
-export default function Home() {
+export default function Home({ searchTerm, setSearchTerm }) {
 
   const { slug } = useParams()
   const { loading, error, data } = useQuery(ARTICLES_QUERY, {
@@ -28,13 +28,24 @@ export default function Home() {
 
   const articles = data.articles;
 
+
+
   return (
     <>
       <Hero />
-      <SearchResults />
-      <FeaturedPosts articles={articles} />
-      <RecentPosts articles={articles} />
-      <CategoriesMenu />
+
+      {searchTerm ? (
+        <SearchResults searchTerm={searchTerm} />
+      ) : (
+        <>
+          <FeaturedPosts articles={articles} />
+          <CategoriesMenu />
+          <RecentPosts articles={articles} />
+        </>
+
+      )}
+
+
     </>
   )
 }

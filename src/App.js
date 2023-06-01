@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
@@ -21,14 +21,22 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+    console.log('search term', event.target.value)
+  };
+
   return (
     <BrowserRouter>
       <React.StrictMode>
         <ApolloProvider client={client}>
-          <NavBar />
+          <NavBar searchTerm={searchTerm} handleSearch={handleSearch} />
           <Routes>
 
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
 

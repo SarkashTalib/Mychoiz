@@ -7,11 +7,11 @@ const navigation = [
 
 
   { name: 'Home', href: '/' },
-  { name: 'Category', href: '/' },
+  // { name: 'Category', href: '/' },
   // { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  // { name: 'Contact', href: '/contact' },
 ]
-export default function NavBar() {
+export default function NavBar({ searchTerm, handleSearch }) {
   return (
     <Popover>
       <div className="px-4 mx-auto sm:px-6" >
@@ -36,6 +36,8 @@ export default function NavBar() {
                   className="block w-full py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 duration-200 border border-gray-200 rounded-md focus:border-gray-100 focus:bg-gray-100 focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"
                   placeholder="Search"
                   type="search"
+                  value={searchTerm}
+                  onChange={handleSearch}
                 />
               </div>
             </div>
