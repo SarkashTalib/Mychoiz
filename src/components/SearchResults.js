@@ -23,11 +23,13 @@ const SearchResults = ({ searchTerm }) => {
 
 
   const filterResults = (articles, searchTerm) => {
-
-    return articles.filter(result =>
-      result.attributes.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    return articles.filter(result => {
+      const titleMatch = result.attributes.title.toLowerCase().includes(searchTerm.toLowerCase());
+      const descriptionMatch = result.attributes.description?.toLowerCase().includes(searchTerm.toLowerCase());
+      return titleMatch || descriptionMatch;
+    });
   };
+
 
   if (loading) return <Loading />;
   if (error) return <p className="text-center text-red-500 text-lg p-10">Oh, snapp! We are having some trouble fetching you content</p>;

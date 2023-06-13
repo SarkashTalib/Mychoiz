@@ -60,16 +60,6 @@ export default function Hero() {
               </h1>
               <p className="max-w-md mx-auto mt-3 text-base text-gray-500 sm:text-lg md:mt-5 md:max-w-3xl md:text-xl">
                 Find the best on the internet</p>
-              {/* <div className="max-w-lg mx-auto mt-5 sm:flex sm:justify-center md:mt-8">
-                <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                  <a
-                    href="/"
-                    className="flex items-center justify-center w-full px-8 py-3 text-base font-medium bg-white rounded-md text-emerald-600 hover:bg-gray-50 md:py-2 md:px-10 md:text-lg"
-                  >
-                    Latest Posts
-                  </a>
-                </div>
-              </div> */}
             </div>
           </main>
         </div>
