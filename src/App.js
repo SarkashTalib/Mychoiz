@@ -26,7 +26,6 @@ function App() {
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
-    console.log('search term', event.target.value)
   };
 
   return (
@@ -40,7 +39,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
 
-            <Route path="/article/:slug" element={<Article />} />
+            <Route path="/article/:slug" element={<Article searchTerm={searchTerm} />} />
             <Route path="/category/:id" element={<Category />} />
 
             <Route path="*" element={<NotFoundPage />} />

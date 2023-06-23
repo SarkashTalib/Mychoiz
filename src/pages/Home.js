@@ -32,12 +32,12 @@ export default function Home({ searchTerm, setSearchTerm }) {
 
   return (
     <>
-      <Hero />
 
       {searchTerm ? (
         <SearchResults searchTerm={searchTerm} />
       ) : (
         <>
+          <Hero />
           <FeaturedPosts articles={articles} />
           <CategoriesMenu />
           <RecentPosts articles={articles} />

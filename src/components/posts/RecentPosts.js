@@ -9,7 +9,7 @@ export default function RecentPosts({ articles }) {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center flex-shrink-0 mt-10">
+      <div className="flex flex-col items-center overflow-x-hidden justify-center flex-shrink-0 mt-10">
         <h1 className="pb-4 text-4xl border-b text-emerald-600">Most Recent</h1>
         <div>
           <ErrorBoundary>

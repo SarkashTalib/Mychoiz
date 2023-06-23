@@ -3,46 +3,15 @@ import Loading from '../components/Loading';
 import NotFoundPage from './NotFoundPage';
 
 import { Link, useParams } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { CustomContentField } from '../components/posts/CustomContentField';
 import ErrorBoundary from '../components/ErrorBoundary';
 
-const ARTICLE = gql`
-  query GetArticle ($slug: String!) {
-    articles(filters: { slug: { eq: $slug } }) {
-      data {
-        attributes{
-          title
-          description
-          slug
-          content
-          categories {
-            data{
-              id,
-              attributes {
-                name
-              }
-            }
-          },
-          coverImg {
-            data {
-              id,
-              attributes {
-                url,
-                alternativeText,
-                caption
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
+import ARTICLES_QUERY from '../queries/ArticlesQuery';
 
 export default function Article() {
   const { slug } = useParams()
-  const { loading, error, data } = useQuery(ARTICLE, {
+  const { loading, error, data } = useQuery(ARTICLES_QUERY, {
     variables: { slug: slug }
   })
 
